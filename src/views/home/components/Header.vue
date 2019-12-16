@@ -1,15 +1,18 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <div class="iconfont back-icon">&#xe624;</div>
+      <div class="iconfont header-back">&#xe624;</div>
     </div>
     <div class="header-input">
       <span class="iconfont">&#xe632;</span>
       输入城市/景点/游玩主题
     </div>
-    <div class="header-right">
-      <span class="iconfont arrow-icon">&#xe64a;</span>
-    </div>
+    <router-link to="/city">
+      <div class="header-right">
+        城市
+        <span class="iconfont arrow-icon">&#xe64a;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -20,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@styles/variable.scss';
+@import '~styles/variable.scss';
 
 // 1rem = html.font-size = 50px
 .header {
@@ -31,7 +34,7 @@ export default {
   .header-left {
     float: left;
     width: .64rem;
-    .back-icon {
+    .header-back {
       text-align: center;
       font-size: .4rem;
     }

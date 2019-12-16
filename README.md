@@ -1,4 +1,4 @@
-# test
+# Travel App
 
 ## Project setup
 ```
