@@ -10,6 +10,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 import HomeHeader from './components/Header'
 import HomeSwiper from './components/Swiper'
@@ -31,12 +32,17 @@ export default {
       swiperList: [],
       iconList: [],
       recommendList: [],
-      weekendList: []
+      weekendList: [],
+      lastCity: ''
     }
+  },
+  computed: {
+    ...mapState(['city'])
   },
   methods: {
     getHomeInfo () {
-      axios.get('/mock/index.json').then(result => {
+      axios.get('/mock/index.json?city=' + this.city).then(result => {
+      // axios.get('/api/index.json?city=' + this.city).then(result => {
         result = result.data
         if (result.success && result.data) {
           const data = result.data
@@ -49,7 +55,15 @@ export default {
     }
   },
   mounted () {
+    this.lastCity = this.city
     this.getHomeInfo()
+  },
+  // 使用keep-alive缓存组件模式时会触发该钩子函数
+  activated () {
+    if (this.lastCity !== this.city) {
+      this.getHomeInfo()
+      this.lastCity = this.city
+    }
   }
 }
 </script>

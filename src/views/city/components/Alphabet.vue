@@ -58,6 +58,9 @@ export default {
     handleTouchEnd () {
       this.touchStatus = false
     }
+  },
+  updated () {
+    this.startY = this.$refs['A'][0].offsetTop
   }
 }
 </script>
